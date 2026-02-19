@@ -1,0 +1,34 @@
+@rootURL = http://localhost:5062
+
+GET {{rootURL}}/weatherforecast/
+Accept: application/json
+
+###
+GET {{rootURL}}/api/books/
+Accept: application/json
+
+###
+GET {{rootURL}}/api/books/1
+Accept: application/json
+
+###
+POST {{rootURL}}/api/books
+Content-Type: application/json
+{
+    "title": "O Enterro do Velho Punk",
+    "author": "Thomas Pappon",
+    "yearPublished": 2025
+}
+
+###
+PUT {{rootURL}}/api/books/2
+Content-Type: application/json
+{
+    "id": 2,
+    "title": "Sandman",
+    "author": "Neil Gaiman",
+    "yearPublished": 1995
+}
+
+###
+DELETE {{rootURL}}/api/books/2
