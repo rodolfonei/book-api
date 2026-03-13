@@ -1,9 +1,10 @@
 ﻿using FirstAPI.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace FirstAPI.Data
 {
-    public class FirstAPIContext : DbContext
+    public class FirstAPIContext : IdentityDbContext<ApplicationUser>
     {
         public FirstAPIContext(DbContextOptions<FirstAPIContext> options): base(options) { }
 
