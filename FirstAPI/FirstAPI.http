@@ -32,3 +32,12 @@ Content-Type: application/json
 
 ###
 DELETE {{rootURL}}/api/books/2
+
+### 
+POST {{rootURL}}/api/authentication/register-user
+Content-Type: application/json
+{
+    "UserName": "User 1",
+    "Email": "user1@gmail.com",
+    "Password": "1234"
+}
