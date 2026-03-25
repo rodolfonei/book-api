@@ -9,5 +9,6 @@ namespace FirstAPI.Data
         public FirstAPIContext(DbContextOptions<FirstAPIContext> options): base(options) { }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<RefreshToken> RefreshTokens { get; set; }
     }
 }
