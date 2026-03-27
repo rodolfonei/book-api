@@ -32,6 +32,11 @@ namespace FirstAPI.Controllers
         [HttpPost("register-user")]
         public async Task<IActionResult> Register([FromBody]Register payload)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Provide all requried fields");
+            }
+
             var userExists = await _userManager.FindByEmailAsync(payload.Email);
 
             if (userExists != null)
@@ -53,6 +58,25 @@ namespace FirstAPI.Controllers
             }
 
             return Created(nameof(Register), $"User {payload.Email} created");
+        }
+
+        [HttpPost("login-user")]
+        public async Task<IActionResult> Login([FromBody] Login payload)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Provide all requried fields");
+            }
+
+            var user = await _userManager.FindByEmailAsync(payload.Email);
+
+            if (user != null && await _userManager.CheckPasswordAsync(user, payload.Password))
+            {
+                var tokenValue = await GenerateJwtToken(user);
+                return Ok(tokenValue);
+            }
+
+            return Unauthorized();
         }
 
         private async Task<AuthResult> GenerateJwtToken(ApplicationUser user)
