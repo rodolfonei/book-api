@@ -4,6 +4,7 @@ using FirstAPI.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FirstAPI.Migrations
 {
     [DbContext(typeof(FirstAPIContext))]
-    partial class FirstAPIContextModelSnapshot : ModelSnapshot
+    [Migration("20260406142151_SeedRoles")]
+    partial class SeedRoles
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -189,12 +192,6 @@ namespace FirstAPI.Migrations
                             Id = "2",
                             Name = "User",
                             NormalizedName = "USER"
-                        },
-                        new
-                        {
-                            Id = "3",
-                            Name = "Default",
-                            NormalizedName = "DEFAULT"
                         });
                 });
 

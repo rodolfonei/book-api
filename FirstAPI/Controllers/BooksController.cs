@@ -8,7 +8,7 @@ namespace FirstAPI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    [Authorize(Roles = UserRoles.Admin)]
     public class BooksController : ControllerBase
     {
         private readonly FirstAPIContext _context;

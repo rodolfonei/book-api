@@ -61,6 +61,20 @@ namespace FirstAPI.Controllers
                 return BadRequest("User could not be created!");
             }
 
+            switch (payload.Role)
+            {
+                case "Admin":
+                    await _userManager.AddToRoleAsync(newUser, UserRoles.Admin);
+                    break;
+                case "User":
+                    await _userManager.AddToRoleAsync(newUser, UserRoles.User);
+                    break;
+                default:
+                    await _userManager.AddToRoleAsync(newUser, UserRoles.Default);
+                    break;
+            }
+
+
             return Created(nameof(Register), $"User {payload.Email} created");
         }
 
@@ -164,12 +178,19 @@ namespace FirstAPI.Controllers
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
+            // Add user roles
+            var userRoles = await _userManager.GetRolesAsync(user);
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
+
             var authSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_configuration["JWT:Secret"]));
 
             var token = new JwtSecurityToken(
                 issuer: _configuration["JWT:Issuer"],
                 audience: _configuration["JWT:Audience"],
-                expires: DateTime.UtcNow.AddMinutes(1),  // 5 - 10mins
+                expires: DateTime.UtcNow.AddMinutes(10),  // 5 - 10mins
                 claims: authClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
