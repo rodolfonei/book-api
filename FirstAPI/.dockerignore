@@ -1,9 +1,0 @@
-bin
-obj
-.vs
-.git
-*.user
-*.suo
-Dockerfile
-docker-compose.yml
-.env
