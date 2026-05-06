@@ -1,13 +1,18 @@
-@rootURL = http://localhost:5001
+// @rootURL = http://localhost:5062
+@rootURL = https://localhost:7212
+@bearerToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1lIjoiVXNlcjEiLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjlkZTU1ZDEwLWNmY2UtNDhjNS1iMmQxLWIwNjJmMjFlNWU5ZSIsImVtYWlsIjoidXNlcjFAZ21haWwuY29tIiwic3ViIjoidXNlcjFAZ21haWwuY29tIiwianRpIjoiYmI3ODc2NWMtMWQwYi00MGRlLTk5N2EtMTAxYTNiZDk5NzkyIiwiZXhwIjoxNzc0NjIwNjM4LCJpc3MiOiJodHRwczovL2xvY2FsaG9zdDo3MjEyIiwiYXVkIjoiVXNlciJ9.3P1i0jRDMIlWOUZOpvNhLdg39mzIsm4GPbLmK_a5oIk
+
 GET {{rootURL}}/weatherforecast/
 Accept: application/json
 
 ###
 GET {{rootURL}}/api/books/
+Authorization: Bearer {{bearerToken}}
 Accept: application/json
 
 ###
 GET {{rootURL}}/api/books/1
+Authorization: Bearer {{bearerToken}}
 Accept: application/json
 
 ###
@@ -31,3 +36,20 @@ Content-Type: application/json
 
 ###
 DELETE {{rootURL}}/api/books/2
+
+### 
+POST {{rootURL}}/api/authentication/register-user
+Content-Type: application/json
+{
+    "UserName": "User1",
+    "Email": "user1@gmail.com",
+    "Password": "Pw#1234"
+}
+
+###
+POST {{rootUrl}}/api/authentication/login-user
+Content-Type: application/json
+{
+    "Email": "user1@gmail.com",
+    "Password": "Pw#1234" 
+}
