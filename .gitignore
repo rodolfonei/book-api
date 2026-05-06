@@ -364,3 +364,4 @@ FodyWeavers.xsd
 
 /firstapi/appsettings.Development.json
 /firstapi/appsettings.Production.json
+FirstAPI.http
