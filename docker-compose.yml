@@ -1,0 +1,12 @@
+services:
+    webapp:
+        container_name: book-api
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "5001:5001"
+        environment:
+            - ASPNETCORE_ENVIRONMENT=Development
+    # db:
+    #     container_name: book-db

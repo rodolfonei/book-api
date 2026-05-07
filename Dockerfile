@@ -17,8 +17,8 @@ RUN dotnet publish "FirstAPI.csproj" -c Release -o /app/publish
 
 # Stage 3: Run Stage
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
-ENV ASPNETCORE_HTTP_PORTS=5002
-EXPOSE 5002
+ENV ASPNETCORE_HTTP_PORTS=5001
+EXPOSE 5001
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "FirstAPI.dll"]
